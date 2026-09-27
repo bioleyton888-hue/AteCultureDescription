@@ -1,0 +1,51 @@
+﻿# AteCultureDescription - the culture description block.
+# Shows the culture's description (written text, family generic or fallback)
+# and the invitation to improve it. Needs a Culture datacontext.
+# Used by the culture tooltip (gui/shared/cooltip.gui) and the culture window
+# (gui/window_culture.gui). Change what is shown HERE, once, for both.
+#
+# Blocks (defaults are safe anywhere; the tooltip adds its tint color):
+#   ate_cd_desc_props      - the description text (both variants)
+#   ate_cd_hint_props      - the "give us a better one" line
+
+types AteCdCultureDescription
+{
+	type ate_cd_culture_description = vbox {
+		layoutpolicy_horizontal = growing
+
+		# Culture has a description key
+		text_multi = {
+			visible = "[EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_has_culture_key_value' ), '(CFixedPoint)1' )]"
+			margin = { 0 5 }
+			text = "[Localize( Concatenate( Culture.MakeScope.Var( 'ate_cd_culture_key' ).GetFlagName, '_desc' ) )]"
+			autoresize = yes
+			block "ate_cd_desc_props" {
+				max_width = 400
+			}
+		}
+
+		# Fallback: no key yet (culture from another mod, or before the first pulse).
+		# Two widgets with complementary visibility, not SelectLocalization, which
+		# drops the Culture datacontext this text needs.
+		text_multi = {
+			visible = "[Not( EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_has_culture_key_value' ), '(CFixedPoint)1' ) )]"
+			margin = { 0 5 }
+			text = "ate_cd_fallback_desc"
+			autoresize = yes
+			block "ate_cd_desc_props" {
+				max_width = 400
+			}
+		}
+
+		# Invitation to improve the text (community spreadsheet)
+		text_multi = {
+			margin_bottom = 5
+			text = "ate_cd_feedback_hint"
+			default_format = "#weak"
+			autoresize = yes
+			block "ate_cd_hint_props" {
+				max_width = 400
+			}
+		}
+	}
+}

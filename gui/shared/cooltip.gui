@@ -4831,9 +4831,7 @@ types CultureTooltips
 				}
 
 
-				#ATE_CD ADDITION - culture description
-				# Two text widgets with complementary visibility (not SelectLocalization, which
-				# drops the Culture datacontext the fallback text needs).
+				#ATE_CD ADDITION - culture description (type in gui/ate_cd_culture_description.gui)
 				vbox = {
 					layoutpolicy_horizontal = growing
 
@@ -4845,34 +4843,15 @@ types CultureTooltips
 						layoutpolicy_horizontal = growing
 					}
 
-					# Culture has a description key
-					text_multi = {
-						visible = "[EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_has_culture_key_value' ), '(CFixedPoint)1' )]"
-						max_width = 400
-						margin = { 0 5 }
-						text = "[Localize( Concatenate( Culture.MakeScope.Var( 'ate_cd_culture_key' ).GetFlagName, '_desc' ) )]"
-						autoresize = yes
-						fonttintcolor = "[TooltipInfo.GetTintColor]"
-					}
-
-					# Fallback: no key yet (unwritten culture, other mods' cultures)
-					text_multi = {
-						visible = "[Not( EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_has_culture_key_value' ), '(CFixedPoint)1' ) )]"
-						max_width = 400
-						margin = { 0 5 }
-						text = "ate_cd_fallback_desc"
-						autoresize = yes
-						fonttintcolor = "[TooltipInfo.GetTintColor]"
-					}
-
-					# Invitation to improve the text (community spreadsheet)
-					text_multi = {
-						max_width = 400
-						margin_bottom = 5
-						text = "ate_cd_feedback_hint"
-						default_format = "#weak"
-						autoresize = yes
-						fonttintcolor = "[TooltipInfo.GetTintColor]"
+					ate_cd_culture_description = {
+						blockoverride "ate_cd_desc_props" {
+							max_width = 400
+							fonttintcolor = "[TooltipInfo.GetTintColor]"
+						}
+						blockoverride "ate_cd_hint_props" {
+							max_width = 400
+							fonttintcolor = "[TooltipInfo.GetTintColor]"
+						}
 					}
 				}
 				#ATE_CD ADDITION END

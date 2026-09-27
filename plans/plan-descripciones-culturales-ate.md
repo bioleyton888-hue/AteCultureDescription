@@ -172,7 +172,29 @@ Justo después de que el jugador crea una cultura híbrida o divergente, recibe 
 
 ---
 
-## Fase 9: Investigación: descripción editable al crear una cultura
+## Fase 9: Descripción en la ventana de cultura
+
+**Historias de usuario**: 44, 45, 46, 47
+
+> Añadida 2026-09-27 a pedido del usuario (antes estaba fuera de alcance: solo tooltip). La antigua fase 9 pasa a ser la 10.
+
+### Qué construir
+
+La ventana de cultura (la que se abre con "Click to view <cultura>") muestra la misma descripción que el tooltip (texto específico, genérica o respaldo) en una sección propia, junto con la línea de invitación a mejorarla. La lógica de qué texto mostrar vive en **un solo tipo de GUI compartido** por el tooltip y la ventana, para no duplicarla. Override de `window_culture.gui` (ATE no lo sobrescribe), con cambios mínimos y delimitados con `#ATE_CD ADDITION`.
+
+### Criterios de aceptación
+
+- [x] Decidida la ubicación: justo debajo del banner del ethos, en "Traditions and Pillars" (decisión del usuario 2026-09-27).
+- [x] La ventana muestra la descripción correcta para una cultura con texto propio (Sunshiner) y una ajena (Dixie). *(híbridas/divergentes y respaldo usan el mismo componente ya probado en el tooltip; el ancho del respaldo en la ventana no se verificó visualmente)*
+- [x] La línea de feedback aparece bajo la descripción.
+- [x] El texto no deforma la ventana; tradiciones y pilares siguen visibles y con tooltip (Southern Knights en Dixie).
+- [x] Tooltip y ventana usan el mismo tipo de GUI (`ate_cd_culture_description`).
+- [x] La ventana funciona igual para la cultura propia y para culturas ajenas.
+- [x] `error.log` sin entradas del mod. *(sesión 14:57)*
+
+---
+
+## Fase 10: Investigación: descripción editable al crear una cultura
 
 **Historias de usuario**: 41, 42, 43
 

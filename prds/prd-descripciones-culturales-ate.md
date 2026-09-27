@@ -84,6 +84,13 @@ La descripción queda asociada a la cultura (no a su nombre), sobrevive a renomb
 42. Como autor del mod, quiero un informe de investigación con las vías exploradas y su veredicto (viable / no viable / viable con límites), para poder decidir si se implementa y cómo.
 43. Como autor del mod, quiero que si la vía es viable se evalúe si el texto sobrevive a guardar/cargar y se ve en multijugador, para poder no publicar una función que pierde datos.
 
+### Descripción en la ventana de cultura (añadido 2026-09-27)
+
+44. Como jugador, quiero ver la descripción de una cultura en su ventana de cultura, para poder leerla con calma sin depender de un tooltip.
+45. Como jugador, quiero que la ventana muestre exactamente el mismo texto que el tooltip, para poder no encontrar versiones distintas de la misma cultura.
+46. Como jugador, quiero que la sección de descripción no desplace ni tape las tradiciones, pilares e innovaciones, para poder seguir usando la ventana con normalidad.
+47. Como autor del mod, quiero que la lógica de qué descripción mostrar esté en un solo componente de GUI, para poder cambiarla en un solo lugar.
+
 ## Decisiones de Implementación
 
 ### Alcance y plataforma
@@ -151,7 +158,7 @@ La descripción queda asociada a la cultura (no a su nombre), sobrevive a renomb
 ## Fuera de Alcance
 
 - **Descripción de texto libre** escrita por el jugador — el motor solo la ofrece para religiones (`OnEditDescription`); las ventanas de cultura solo exponen nombre, sustantivo colectivo y prefijo. Queda sujeta al resultado de la fase de investigación (módulo 8).
-- Sección de descripción en la ventana de cultura (solo tooltip en esta versión).
+- ~~Sección de descripción en la ventana de cultura~~ → pasó al alcance el 2026-09-27 (fase 9 del plan, historias 44–47).
 - Otros idiomas distintos del inglés.
 - CK3 vanilla y otros mods de conversión total.
 - Compatibilidad avanzada con mods que también sobrescriban el tooltip de cultura (el último cargado gana; riesgo aceptado).
