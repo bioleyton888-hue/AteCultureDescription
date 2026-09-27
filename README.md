@@ -86,6 +86,37 @@ For anyone curious, or anyone writing a compatibility patch:
 | Amazonia & native Brazil | South-Amazonian, Upper-Amazonian, Japurá-Negro, Madeira-Tapajós, Roraiman, Tupian, Selvático, Orinocoan, Northern Jê, A'uwê Jê, Southern Jê, Cariri |
 | Southern Cone | Chileno, Gaucho, Platense, Viejispano, Patagonian, Austral, Mapuche, Islander, Guaraní, Chacoan, Guaicurú |
 
+## For other mods: add a description for your own culture
+
+If your mod adds cultures to After the End, you can give them a description that this mod shows in the tooltip and the culture window. It is a soft dependency: without this mod installed nothing reads your key or your variable, so nothing breaks.
+
+1. **Write the text** in a localization key named `ate_cd_<culture>_desc`:
+
+   ```
+   l_english:
+    ate_cd_my_culture_desc:0 "Two to four sentences about the culture."
+   ```
+
+2. **Point the culture at it** at game start and every year (`on_game_start` and `yearly_global_pulse`, so saved games pick it up):
+
+   ```
+   culture:my_culture = {
+   	set_variable = { name = ate_cd_culture_key value = flag:ate_cd_my_culture }
+   	if = {
+   		limit = { has_variable = ate_cd_key_is_base_generic }
+   		remove_variable = ate_cd_key_is_base_generic
+   	}
+   	# Only "uses" the flag, so CK3 does not warn "flag set but never used"
+   	if = { limit = { var:ate_cd_culture_key = flag:ate_cd_my_culture } }
+   }
+   ```
+
+   Removing `ate_cd_key_is_base_generic` tells this mod your text is a real description, not a regional generic it may replace.
+
+3. **That's it.** A description written by the player with Edit Description still takes priority, as for any culture.
+
+Working example: the Neomoor culture of the *Neomoor Culture Revival* mod (`common/scripted_effects/ate_neomoor_culture_description_effects.txt`).
+
 ## Project layout
 
 ```
