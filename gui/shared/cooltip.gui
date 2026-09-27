@@ -4848,10 +4848,8 @@ types CultureTooltips
 							max_width = 400
 							fonttintcolor = "[TooltipInfo.GetTintColor]"
 						}
-						blockoverride "ate_cd_hint_props" {
-							max_width = 400
-							fonttintcolor = "[TooltipInfo.GetTintColor]"
-						}
+						# No "give us a better one" line here: culture window only
+						blockoverride "ate_cd_hint" {}
 					}
 				}
 				#ATE_CD ADDITION END

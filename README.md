@@ -21,7 +21,7 @@ Hover over any culture, anywhere in the game (a character, a county, the culture
 - **Written descriptions win.** When a culture gets its own text, it replaces the generic one automatically, even in saved games.
 - **Safe for existing saves.** You can add the mod to a running campaign: every culture gets its description by the next January 1st.
 - **Write your own.** When you create a hybrid or divergent culture, you can write its description yourself: it replaces the generic one. As cultural head you can rewrite it at any time, as often as you like, with the **Edit Description** button of the culture window. Your text stays after your death, and your heir can edit it.
-- **Community-driven.** Every description ends with an invitation to write a better one (see below).
+- **Community-driven.** The culture window invites you to write a better description (see below). The tooltip stays clean.
 
 ## Help write the descriptions
 
@@ -107,6 +107,17 @@ docs/                    screenshots
 ```
 
 All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab characters, as CK3 requires. `.gitattributes` disables line-ending conversion so the files stay byte-identical.
+
+## Changelog
+
+**0.2.0**
+- Write your own culture's description: an event when you create a hybrid or divergent culture, and an **Edit Description** button in the culture window (culture head only, unlimited edits).
+- The invitation to improve a description now appears only in the culture window, not in every tooltip.
+- The engine's limit for typed text (`NGUI.RENAME_MAX_LENGTH`) is raised from 40 to 500.
+- First community descriptions: Barriga Verde, Hunsrickisch and Ancient Portuguese.
+
+**0.1.0**
+- First release: descriptions in the culture tooltip and the culture window, 45 regional generic texts, and the community spreadsheet.
 
 ## Credits
 

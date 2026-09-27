@@ -6,7 +6,9 @@
 #
 # Blocks (defaults are safe anywhere; the tooltip adds its tint color):
 #   ate_cd_desc_props      - the description text (both variants)
-#   ate_cd_hint_props      - the "give us a better one" line
+#   ate_cd_hint            - the whole "give us a better one" line; the
+#                            tooltip overrides it empty (window only)
+#   ate_cd_hint_props      - that line's properties
 
 types AteCdCultureDescription
 {
@@ -75,15 +77,19 @@ types AteCdCultureDescription
 		}
 
 		# Invitation to improve the text (community spreadsheet). Hidden under a
-		# player's own text, which is not in the spreadsheet.
-		text_multi = {
-			visible = "[Not( EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_desc_mode_value' ), '(CFixedPoint)2' ) )]"
-			margin_bottom = 5
-			text = "ate_cd_feedback_hint"
-			default_format = "#weak"
-			autoresize = yes
-			block "ate_cd_hint_props" {
-				max_width = 400
+		# player's own text, which is not in the spreadsheet. Only in the culture
+		# window: the tooltip empties this block (seen hundreds of times per
+		# campaign, it pulled players out of the game).
+		block "ate_cd_hint" {
+			text_multi = {
+				visible = "[Not( EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_desc_mode_value' ), '(CFixedPoint)2' ) )]"
+				margin_bottom = 5
+				text = "ate_cd_feedback_hint"
+				default_format = "#weak"
+				autoresize = yes
+				block "ate_cd_hint_props" {
+					max_width = 400
+				}
 			}
 		}
 	}

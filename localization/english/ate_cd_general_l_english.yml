@@ -1,5 +1,5 @@
 ﻿l_english:
  # Fallback shown for any culture without a description key
  ate_cd_fallback_desc:0 "Little has been written about the [Culture.GetCollectiveNounNoTooltip]. Whatever story they carry is still being told by those who live it."
- # Shown under every culture description in the tooltip
+ # Shown under the culture description in the culture window (not in the tooltip)
  ate_cd_feedback_hint:0 "Think this description is not accurate enough? Give us a better one in the spreadsheet linked on the mod's Workshop page."
