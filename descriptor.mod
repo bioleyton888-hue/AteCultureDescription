@@ -5,3 +5,4 @@ tags={
 }
 name="After the End: Culture Descriptions"
 supported_version="1.19.*"
+picture="thumbnail.png"
