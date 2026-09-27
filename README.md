@@ -2,10 +2,12 @@
 
 A submod for **[After the End](https://steamcommunity.com/sharedfiles/filedetails/?id=3192256710)** (Crusader Kings III 1.19) that gives every culture a short narrative description, the way faiths already have one.
 
-Hover over any culture, anywhere in the game (a character, a county, the cultures map mode), and the tooltip tells you who they are, where they came from and what makes them tick.
+Hover over any culture, anywhere in the game (a character, a county, the cultures map mode), and the tooltip tells you who they are, where they came from and what makes them tick. Open the culture window and the same description is right under the ethos banner.
 
 <p align="center">
-  <img src="docs/tooltip_base_generic.png" alt="The Ruteno culture tooltip with its description" width="435">
+  <img src="docs/tooltip_base_generic.png" alt="The Ruteno culture tooltip with its description" width="380">
+  &nbsp;
+  <img src="docs/culture_window.png" alt="The Sunshiner culture window with its description under the ethos banner" width="380">
 </p>
 
 **Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=3809203832
@@ -13,6 +15,7 @@ Hover over any culture, anywhere in the game (a character, a county, the culture
 ## Features
 
 - **A description in every culture tooltip.** It appears below the usual content and never stretches the tooltip.
+- **Also in the culture window**, right under the ethos banner of the Traditions and Pillars tab. Pillars and traditions stay where they were.
 - **No culture is ever left blank.** ATE has 422 cultures. Those without a written description get a generic one based on their region: the South, the Caribbean, the Andes, the Arctic and so on.
 - **New cultures included.** Hybrid and divergent cultures created during the game, by you or by the AI, get a description that fits how they were born.
 - **Written descriptions win.** When a culture gets its own text, it replaces the generic one automatically, even in saved games.
@@ -40,7 +43,11 @@ There are 422 cultures in After the End, and each deserves someone who actually 
 ## Requirements and compatibility
 
 - **Crusader Kings III 1.19** and **After the End**. Load this mod **after** After the End.
-- The mod replaces `gui/shared/cooltip.gui` (the shared tooltip file) to add the description. It is **incompatible with other mods that change that file**: whichever loads last wins. After the End itself does not touch it.
+- The mod replaces two vanilla interface files to show the description:
+  - `gui/shared/cooltip.gui` (the shared tooltip file);
+  - `gui/window_culture.gui` (the culture window).
+
+  It is **incompatible with other mods that change either file**: whichever loads last wins. After the End itself touches neither. Both files are unmodified vanilla copies except for one block marked `#ATE_CD ADDITION`, which makes a compatibility patch easy.
 - Game mechanics are untouched: no changes to cultures, traditions, hybridization or divergence.
 
 ## How it works
@@ -56,6 +63,7 @@ For anyone curious, or anyone writing a compatibility patch:
 
   New cultures get theirs through `on_culture_created`.
 - A culture with no family (for example, one from another mod) shows a **universal fallback** text.
+- What to show lives in **one shared interface component** (`ate_cd_culture_description`), used by both the tooltip and the culture window.
 
 | Family | Heritages |
 |---|---|
@@ -82,7 +90,10 @@ common/
   on_action/          game start, yearly pulse and culture creation hooks
   scripted_effects/   key assignment; *_generated.txt files are generated, do not edit by hand
   script_values/      lets the tooltip check whether a culture has a description
-gui/shared/cooltip.gui   vanilla tooltip file + the block marked #ATE_CD ADDITION
+gui/
+  ate_cd_culture_description.gui   the shared description component (tooltip + window)
+  shared/cooltip.gui               vanilla tooltip file + the block marked #ATE_CD ADDITION
+  window_culture.gui               vanilla culture window + the block marked #ATE_CD ADDITION
 localization/english/    descriptions (per heritage), generics and the fallback
 prds/, plans/            design documents (in Spanish)
 docs/                    screenshots
