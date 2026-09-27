@@ -26,7 +26,7 @@ Decisiones duraderas que aplican a todas las fases:
 
 ---
 
-## Fase 1: Prueba mínima con Sunshiner
+## Fase 1: Prueba mínima con Sunshiner — ✅
 
 **Historias de usuario**: 1, 7, 8, 9, 10
 
@@ -47,7 +47,7 @@ Camino completo para una sola cultura: al iniciar una partida nueva, Sunshiner r
 
 ---
 
-## Fase 2: Respaldo universal
+## Fase 2: Respaldo universal — ✅
 
 **Historias de usuario**: 17, 31, 32
 
@@ -64,7 +64,7 @@ Toda cultura sin `ate_cd_culture_key` (culturas base aún sin texto, culturas de
 
 ---
 
-## Fase 3: Generador y registro de todas las culturas base
+## Fase 3: Generador y registro de todas las culturas base — ✅
 
 **Historias de usuario**: 28, 29, 30, 34, 35, 36, 37, 40
 
@@ -83,7 +83,7 @@ Una herramienta Python, desarrollada con TDD, que lee las culturas de ATE y las 
 
 ---
 
-## Fase 4: Genéricas automáticas al crear una cultura
+## Fase 4: Genéricas automáticas al crear una cultura — ✅
 
 **Historias de usuario**: 11, 12, 13, 14, 15, 16, 18
 
@@ -103,7 +103,7 @@ Cuando nace una cultura híbrida o divergente (del jugador o de la IA), recibe a
 
 ---
 
-## Fase 5: Validador
+## Fase 5: Validador — ✅
 
 **Historias de usuario**: 38
 
@@ -120,7 +120,12 @@ Una herramienta Python que cruza culturas de ATE, registro y localización, y pr
 
 ---
 
-## Fase 6: Tandas de descripciones fijas
+## Fase 6: Tandas de descripciones fijas — ✅ genéricas / ⏳ textos específicos (comunidad)
+
+> **Cambio de enfoque 2026-09-27.** En vez de escribir las 422 culturas por tandas:
+> - Claude escribió **45 genéricas reales** (15 familias × base/hybrid/divergent). Toda cultura muestra un texto acorde a su región. Verificado en el juego.
+> - Los textos específicos por cultura los escribe la **comunidad** en la hoja (https://docs.google.com/spreadsheets/d/1l1CXGpG0bm9sCHKsWecNKvg0Pni-3jLZ94Ml3ykzkDM/edit). **Sin importador**: el usuario descargará la hoja y se pasan los textos juntos. El flujo por tanda de abajo sigue valiendo para ese momento.
+> - Línea de feedback bajo cada descripción que invita a mejorarla en la hoja.
 
 **Historias de usuario**: 2, 3, 4, 5, 6, 39
 
@@ -137,7 +142,9 @@ Escribir descripciones para culturas base por tandas de familia de herencia, emp
 
 ---
 
-## Fase 7: Plantillas del jugador
+## Fase 7: Plantillas del jugador — ❌ OMITIDA
+
+> Omitida por decisión del usuario el 2026-09-27. No se escribió código. Los jugadores mejoran las descripciones a través de la hoja comunitaria en vez de plantillas dentro del juego.
 
 **Historias de usuario**: 19, 20, 21, 22, 23, 25, 26, 27
 
@@ -156,23 +163,34 @@ Una decisión visible solo para el jugador que es jefe de su cultura, que abre u
 
 ---
 
-## Fase 8: Oferta de plantillas al crear una cultura
+## Fase 8: Escribir la descripción propia al crear una cultura — ⚠️ APROBADA (pendiente del prototipo)
 
-**Historias de usuario**: 24
+> 2026-09-27: el usuario mantiene la fase (solo se omitió la 7), pero la definición original dependía de las plantillas. **Redefinición aprobada** por el usuario el 2026-09-27, a partir del informe de la fase 10 (`scripts/fase10_informe_texto_editable.md`): el jugador escribe texto libre en un evento. Definición original (elegir plantilla) descartada. Orden acordado: primero publicar lo ya terminado (commit, Workshop, hoja, Reddit) y después el prototipo.
+
+**Historias de usuario**: 24, 41
 
 ### Qué construir
 
-Justo después de que el jugador crea una cultura híbrida o divergente, recibe un evento que le ofrece elegir plantilla o quedarse con la genérica asignada. La IA no recibe el evento.
+Justo después de que el jugador crea una cultura híbrida o divergente, recibe un evento con un **campo de texto** (`event_window_widget_enter_text`) para escribir la descripción de su cultura, o la opción de quedarse con la genérica asignada. El texto se guarda en el personaje autor (`store_localized_text_in_death`) y la cultura guarda una variable que apunta a él (`ate_cd_text_holder`). El componente GUI compartido muestra ese texto con prioridad sobre la genérica, en el tooltip y en la ventana. La IA no recibe el evento.
+
+**Paso 0 — prototipo:** un evento de prueba lanzado por consola sobre la cultura del jugador, antes de construir la fase completa. Si falla guardar/cargar o la muerte del autor, se descarta el texto libre y se registra en `scripts/context.md`; si solo falla lo de los caracteres especiales, sigue siendo viable.
 
 ### Criterios de aceptación
 
-- [ ] Crear una cultura como jugador dispara el evento una sola vez.
-- [ ] Quedarse con la genérica no cambia nada; elegir plantilla se comporta igual que la decisión de la fase 7.
-- [ ] Una cultura creada por la IA no dispara el evento.
+- [ ] Prototipo: el texto escrito aparece en el tooltip y en la ventana de la cultura.
+- [ ] Prototipo: el texto sobrevive a **guardar y cargar**.
+- [ ] Prototipo: el texto sobrevive a la **muerte del autor** (matar por consola, guardar, cargar).
+- [ ] Prototipo: `[ ]`, `$` y `#` escritos por el jugador no se interpretan como código.
+- [ ] Crear una cultura como jugador dispara el evento una sola vez; la IA no lo recibe.
+- [ ] "Quedarse con la genérica" no cambia nada.
+- [ ] Si el autor es purgado o el texto se pierde, la cultura vuelve a su genérica sin mostrar texto vacío ni clave cruda.
+- [ ] Una descripción por personaje (opción (a) del riesgo 4, la clave del widget es fija): el evento no se ofrece si el personaje ya describió otra cultura que sigue existiendo; su heredero sí puede describir la suya.
+- [ ] Campo de varias líneas con tope de caracteres: copia propia del widget con `multiline = yes` y `maxcharacters` (como el campo de descripción de religión), más `max_width` en la GUI.
+- [ ] `error.log` sin entradas del mod.
 
 ---
 
-## Fase 9: Descripción en la ventana de cultura
+## Fase 9: Descripción en la ventana de cultura — ✅
 
 **Historias de usuario**: 44, 45, 46, 47
 
@@ -194,7 +212,9 @@ La ventana de cultura (la que se abre con "Click to view <cultura>") muestra la 
 
 ---
 
-## Fase 10: Investigación: descripción editable al crear una cultura
+## Fase 10: Investigación: descripción editable al crear una cultura — ✅ INFORME HECHO: VIABLE CON LÍMITES
+
+> 2026-09-27. Informe: `scripts/fase10_informe_texto_editable.md`. Resumen: las ventanas de cultura no aceptan texto, pero el widget de evento `event_window_widget_enter_text` sí. El motor guarda texto libre **solo en personajes** (`Character.GetLocalizedText`; `copy_localized_text` / `store_localized_text_in_death` / `remove_localized_text` → `Supported Scopes: character`; no existe `Culture.GetLocalizedText`, confirmado con `dump_data_types` y `script_docs`). La implementación y las pruebas de persistencia pasan a la **fase 8 redefinida**.
 
 **Historias de usuario**: 41, 42, 43
 
@@ -204,7 +224,7 @@ Un spike con entregable un informe (no código de producción) que determina si 
 
 ### Criterios de aceptación
 
-- [ ] Informe en `scripts/` con cada vía explorada, evidencia y resultado.
-- [ ] Veredicto explícito: viable / no viable / viable con límites.
-- [ ] Si es viable: probado guardar/cargar y documentado el comportamiento en multijugador; propuesta de fase de implementación añadida a este plan.
-- [ ] Si no es viable: decisión registrada en `scripts/context.md` para no reabrirla.
+- [x] Informe en `scripts/` con cada vía explorada, evidencia y resultado.
+- [x] Veredicto explícito: **viable con límites**.
+- [~] Si es viable: propuesta de implementación añadida (fase 8 redefinida). Guardar/cargar y muerte del autor → se prueban en el prototipo de la fase 8. Multijugador: sin probar (las mascotas usan el mismo mecanismo).
+- [x] ~~Si no es viable~~: no aplica. Veredicto registrado en `scripts/context.md`.

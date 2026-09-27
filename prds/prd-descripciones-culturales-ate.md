@@ -157,7 +157,8 @@ La descripción queda asociada a la cultura (no a su nombre), sobrevive a renomb
 
 ## Fuera de Alcance
 
-- **Descripción de texto libre** escrita por el jugador — el motor solo la ofrece para religiones (`OnEditDescription`); las ventanas de cultura solo exponen nombre, sustantivo colectivo y prefijo. Queda sujeta al resultado de la fase de investigación (módulo 8).
+- **Plantillas del jugador** (historias 19–23, 25–27, fase 7 del plan): omitidas por decisión del usuario el 2026-09-27. La historia 24 / fase 8 se mantiene pero debe redefinirse sin plantillas. La vía para mejorar una descripción es la hoja comunitaria (línea de feedback en el tooltip y la ventana).
+- **Descripción de texto libre en las ventanas de creación de cultura** — imposible: el motor solo ofrece `OnEditDescription` para religiones; las ventanas de cultura solo exponen nombre, sustantivo colectivo y prefijo (verificado a fondo en la fase 10). La vía viable es un evento con campo de texto justo después de crear la cultura → fase 8 redefinida, pendiente del prototipo.
 - ~~Sección de descripción en la ventana de cultura~~ → pasó al alcance el 2026-09-27 (fase 9 del plan, historias 44–47).
 - Otros idiomas distintos del inglés.
 - CK3 vanilla y otros mods de conversión total.
