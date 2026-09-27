@@ -16,3 +16,19 @@ ate_cd_desc_mode_value = {
 		value = 1
 	}
 }
+
+# Read by the "give us a better one" line (root = the culture): 1 = show it.
+# Hidden under a player's own text and for cultures whose description someone
+# already wrote (var set by ate_cd_mark_written_descriptions_effect).
+ate_cd_show_feedback_hint_value = {
+	value = 1
+	if = {
+		limit = {
+			OR = {
+				exists = var:ate_cd_text_holder
+				has_variable = ate_cd_has_written_text
+			}
+		}
+		value = 0
+	}
+}

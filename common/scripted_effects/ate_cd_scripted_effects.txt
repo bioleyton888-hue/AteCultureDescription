@@ -56,6 +56,7 @@ ate_cd_set_generic_key_effect = {
 # (base cultures, and hybrids/divergents from saves older than the mod).
 ate_cd_refresh_all_keys_effect = {
 	ate_cd_register_all_cultures_effect = yes
+	ate_cd_mark_written_descriptions_effect = yes
 	every_culture_global = {
 		limit = { NOT = { has_variable = ate_cd_culture_key } }
 		ate_cd_assign_generic_key_effect = yes
@@ -95,4 +96,15 @@ ate_cd_hand_over_description_effect = {
 			remove_variable = ate_cd_text_holder
 		}
 	}
+}
+
+# Cultures whose description someone actually wrote (not a copy of a generic,
+# like Sunshiner and Dixie): the culture window hides the "give us a better
+# one" line for them. Hardcoded on purpose: add a line here whenever a
+# community description is added. Neomoor (AteNeomoorCulture) sets the same
+# variable from its own mod.
+ate_cd_mark_written_descriptions_effect = {
+	culture:barriga_verde = { set_variable = ate_cd_has_written_text }
+	culture:hunsrickisch = { set_variable = ate_cd_has_written_text }
+	culture:ancient_portuguese = { set_variable = ate_cd_has_written_text }
 }

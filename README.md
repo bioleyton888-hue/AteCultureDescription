@@ -111,7 +111,7 @@ If your mod adds cultures to After the End, you can give them a description that
    }
    ```
 
-   Removing `ate_cd_key_is_base_generic` tells this mod your text is a real description, not a regional generic it may replace.
+   Removing `ate_cd_key_is_base_generic` tells this mod your text is a real description, not a regional generic it may replace. Optionally add `set_variable = ate_cd_has_written_text` to hide the "write a better one" invitation for that culture.
 
 3. **That's it.** A description written by the player with Edit Description still takes priority, as for any culture.
 

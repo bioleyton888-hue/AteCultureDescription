@@ -77,12 +77,13 @@ types AteCdCultureDescription
 		}
 
 		# Invitation to improve the text (community spreadsheet). Hidden under a
-		# player's own text, which is not in the spreadsheet. Only in the culture
+		# player's own text and under texts someone already wrote (see
+		# ate_cd_show_feedback_hint_value). Only in the culture
 		# window: the tooltip empties this block (seen hundreds of times per
 		# campaign, it pulled players out of the game).
 		block "ate_cd_hint" {
 			text_multi = {
-				visible = "[Not( EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_desc_mode_value' ), '(CFixedPoint)2' ) )]"
+				visible = "[EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_show_feedback_hint_value' ), '(CFixedPoint)1' )]"
 				margin_bottom = 5
 				text = "ate_cd_feedback_hint"
 				default_format = "#weak"
