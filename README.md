@@ -112,4 +112,5 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 - **After the End** team, for the world these cultures live in.
 - **Elder Kings 2** team, for the culture-description technique.
+- **Description writers:** u/Reasonable_Common_46 (Barriga Verde, Hunsrickisch) and u/breathingrequirement (Ancient Portuguese).
 - Every community member who writes a description: your name goes in the credits.
