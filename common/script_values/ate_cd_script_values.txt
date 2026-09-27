@@ -1,0 +1,11 @@
+﻿# AteCultureDescription - script values
+
+# Read by the culture tooltip (root = the culture): 1 if the culture has a
+# description key, 0 otherwise. The GUI has no direct "variable exists" check.
+ate_cd_has_culture_key_value = {
+	value = 0
+	if = {
+		limit = { has_variable = ate_cd_culture_key }
+		value = 1
+	}
+}

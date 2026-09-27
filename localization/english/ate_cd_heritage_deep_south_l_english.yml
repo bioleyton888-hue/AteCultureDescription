@@ -1,0 +1,4 @@
+﻿l_english:
+ # Placeholder = southern base generic until the community writes a real one.
+ # Never delete this key: saved games keep it registered (see scripts/context.md).
+ ate_cd_dixie_desc:0 "The [Culture.GetCollectiveNounNoTooltip] are children of the American South, a land of swamps, bayous, red hills and hurricanes. The old nation fell around them, but the storms, the stubbornness and the cooking all survived. Proud, hospitable and quick to take offense, they will feed any stranger and fight any fool."

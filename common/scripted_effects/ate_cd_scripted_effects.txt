@@ -1,0 +1,63 @@
+﻿# AteCultureDescription - scripted effects
+
+# Gives a culture its description key.
+# Never overwrites a real key (earlier registration, a hybrid/divergent generic
+# assigned at creation, or a template the player picked). The only key it may
+# replace is a base-culture generic (marked with ate_cd_key_is_base_generic),
+# so a description written later always wins over the family generic.
+# The GUI turns the flag into the loc key "<flag>_desc".
+# $CULTURE$ = culture id, e.g. sunshiner -> loc key ate_cd_sunshiner_desc
+ate_cd_register_culture_effect = {
+	culture:$CULTURE$ = {
+		if = {
+			limit = {
+				OR = {
+					NOT = { has_variable = ate_cd_culture_key }
+					has_variable = ate_cd_key_is_base_generic
+				}
+			}
+			set_variable = { name = ate_cd_culture_key value = flag:ate_cd_$CULTURE$ }
+			remove_variable = ate_cd_key_is_base_generic
+		}
+		# Empty check that only exists to "use" the flag: the GUI reads it, but CK3
+		# ignores GUI/loc usage and logs "Flag ... is set but is never used"
+		# (same workaround as Elder Kings 2's culture_key_setup).
+		if = { limit = { var:ate_cd_culture_key = flag:ate_cd_$CULTURE$ } }
+	}
+}
+
+# Gives a culture the generic key of its heritage family, by how it was born:
+# hybrid, divergent, or base (an original ATE culture). Base generics are marked
+# so a written description can replace them later (see above).
+# Called by the generated ate_cd_assign_generic_key_effect (root = the culture).
+# $FAMILY$ = family key from scripts/heritage_families.txt
+ate_cd_set_generic_key_effect = {
+	if = {
+		limit = { is_hybrid_culture = yes }
+		set_variable = { name = ate_cd_culture_key value = flag:ate_cd_generic_$FAMILY$_hybrid }
+	}
+	else_if = {
+		limit = { is_divergent_culture = yes }
+		set_variable = { name = ate_cd_culture_key value = flag:ate_cd_generic_$FAMILY$_divergent }
+	}
+	else = {
+		set_variable = { name = ate_cd_culture_key value = flag:ate_cd_generic_$FAMILY$_base }
+		set_variable = ate_cd_key_is_base_generic
+	}
+	# "use" the flags so CK3 does not log "Flag ... is set but is never used"
+	# (see ate_cd_register_culture_effect)
+	if = { limit = { var:ate_cd_culture_key = flag:ate_cd_generic_$FAMILY$_hybrid } }
+	if = { limit = { var:ate_cd_culture_key = flag:ate_cd_generic_$FAMILY$_divergent } }
+	if = { limit = { var:ate_cd_culture_key = flag:ate_cd_generic_$FAMILY$_base } }
+}
+
+# Everything the game start and the yearly pulse do: first the written
+# descriptions, then a family generic for every culture still without a key
+# (base cultures, and hybrids/divergents from saves older than the mod).
+ate_cd_refresh_all_keys_effect = {
+	ate_cd_register_all_cultures_effect = yes
+	every_culture_global = {
+		limit = { NOT = { has_variable = ate_cd_culture_key } }
+		ate_cd_assign_generic_key_effect = yes
+	}
+}

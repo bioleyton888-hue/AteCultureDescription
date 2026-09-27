@@ -1,0 +1,41 @@
+﻿# AteCultureDescription - on_actions
+# Hooked additively: on_actions merge across files, no vanilla/ATE override needed.
+
+# ate_cd_refresh_all_keys_effect = written descriptions (generated registry)
+# + family generics for every culture still without a key. Idempotent: it never
+# overwrites a real key, so running it again is safe.
+
+# New games
+on_game_start = {
+	on_actions = { ate_cd_on_game_start }
+}
+
+ate_cd_on_game_start = {
+	effect = {
+		ate_cd_refresh_all_keys_effect = yes
+	}
+}
+
+# Saved games (CK3 has no on-load hook) and descriptions added in later mod
+# versions: re-run every Jan 1st. A loaded save gets its keys within a year.
+yearly_global_pulse = {
+	on_actions = { ate_cd_yearly_global_pulse }
+}
+
+ate_cd_yearly_global_pulse = {
+	effect = {
+		ate_cd_refresh_all_keys_effect = yes
+	}
+}
+
+# New hybrid/divergent cultures (player or AI). Root = the new culture.
+# ATE hooks the same on_action (ccu_culture_created); both run.
+on_culture_created = {
+	on_actions = { ate_cd_on_culture_created }
+}
+
+ate_cd_on_culture_created = {
+	effect = {
+		ate_cd_assign_generic_key_effect = yes
+	}
+}
