@@ -1,10 +1,17 @@
 ﻿# AteCultureDescription - script values
 
-# Read by the culture tooltip (root = the culture): 1 if the culture has a
-# description key, 0 otherwise. The GUI has no direct "variable exists" check.
-ate_cd_has_culture_key_value = {
+# Read by the culture description component (root = the culture). The GUI has
+# no direct "variable exists" check, so it asks for a mode:
+#   2 = a player wrote this culture's description (the author still exists)
+#   1 = the culture has a description key (written text or family generic)
+#   0 = nothing yet (culture from another mod, or before the first pulse)
+ate_cd_desc_mode_value = {
 	value = 0
 	if = {
+		limit = { exists = var:ate_cd_text_holder }
+		value = 2
+	}
+	else_if = {
 		limit = { has_variable = ate_cd_culture_key }
 		value = 1
 	}

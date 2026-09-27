@@ -1,0 +1,9 @@
+﻿# AteCultureDescription - defines
+# The event text widget is checked against RENAME_MAX_LENGTH (vanilla: 40
+# characters), which would reject any real description ("Name is too long").
+# Raised the same way Better Barbershop does. It applies to every rename check
+# in the game, but the vanilla rename boxes keep their own maxcharacters caps.
+# Advanced Cheat Menu sets 1000: whichever mod loads last wins; both are enough.
+NGUI = {
+	RENAME_MAX_LENGTH = 500
+}

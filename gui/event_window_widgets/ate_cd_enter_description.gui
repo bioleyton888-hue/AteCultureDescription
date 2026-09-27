@@ -1,0 +1,40 @@
+﻿# AteCultureDescription - event widget: write your culture's description.
+# Copy of vanilla event_window_widget_enter_text.gui, made multiline and capped
+# like the faith description editbox (window_faith_creation.gui). Same pattern
+# as Better Barbershop (Workshop 2220326926, enter_barber_text.gui).
+# Required controller: text, key = ate_cd_custom_desc.
+#
+# Engine rules (tested): the text is written to the character with ANY event
+# option; an empty field or illegal characters ([ ] $ # ...) block every option.
+# So the field is never empty: it comes prefilled with the player's own text if
+# the culture has one (the event copies it onto the player first), otherwise
+# with the culture's current description. A prefilled, untouched text passes.
+
+vbox = {
+	name = "ate_cd_enter_description"
+	datacontext = "[GetPlayer.GetCulture]"
+	layoutpolicy_horizontal = expanding
+	margin = { 10 0 }
+	spacing = 4
+
+	text_single = {
+		text = "ate_cd_custom_desc_prompt"
+	}
+
+	# Fixed size: the event's custom_widgets_container gives no height
+	editbox_standard = {
+		size = { 458 130 }
+
+		blockoverride "editbox_properties"
+		{
+			name = "enter_text" # name referenced in code
+			text = "[Select_CString( EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_desc_mode_value' ), '(CFixedPoint)2' ), GetPlayer.GetLocalizedText( 'ate_cd_custom_desc' ), Localize( Concatenate( Culture.MakeScope.Var( 'ate_cd_culture_key' ).GetFlagName, '_desc' ) ) )]"
+			multiline = yes
+			maxcharacters = 400
+			focus_on_visible = yes
+			ontextedited = "[EventWindowWidgetEnterText.OnEdit]"
+		}
+	}
+
+	expand = {}
+}

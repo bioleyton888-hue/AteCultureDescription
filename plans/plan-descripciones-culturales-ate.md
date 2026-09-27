@@ -163,7 +163,7 @@ Una decisión visible solo para el jugador que es jefe de su cultura, que abre u
 
 ---
 
-## Fase 8: Escribir la descripción propia al crear una cultura — ⚠️ APROBADA (pendiente del prototipo)
+## Fase 8: Escribir la descripción propia al crear una cultura — ⚠️ APROBADA · ✅ prototipo superado (2026-09-27)
 
 > 2026-09-27: el usuario mantiene la fase (solo se omitió la 7), pero la definición original dependía de las plantillas. **Redefinición aprobada** por el usuario el 2026-09-27, a partir del informe de la fase 10 (`scripts/fase10_informe_texto_editable.md`): el jugador escribe texto libre en un evento. Definición original (elegir plantilla) descartada. Orden acordado: primero publicar lo ya terminado (commit, Workshop, hoja, Reddit) y después el prototipo.
 
@@ -175,18 +175,25 @@ Justo después de que el jugador crea una cultura híbrida o divergente, recibe 
 
 **Paso 0 — prototipo:** un evento de prueba lanzado por consola sobre la cultura del jugador, antes de construir la fase completa. Si falla guardar/cargar o la muerte del autor, se descarta el texto libre y se registra en `scripts/context.md`; si solo falla lo de los caracteres especiales, sigue siendo viable.
 
+**Resultado del prototipo (2026-09-27): ✅ superado.** Evento de prueba `ate_cd.9000` (solo consola), widget propio `gui/event_window_widgets/ate_cd_enter_description.gui`, script value `ate_cd_desc_mode_value` (2 = texto del jugador, 1 = clave, 0 = nada) y rama nueva en el componente GUI. Reglas del motor descubiertas en las pruebas:
+- El texto escrito se guarda en el personaje con **cualquier** opción del evento, no solo con "Save". Por eso "Keep" solo cancela de verdad cuando el jugador no es el autor actual; si lo es, la opción se oculta.
+- Campo vacío o caracteres ilegales (`[ ]`, `$`, `#`…) → el motor **bloquea todas las opciones** ("Name is empty" / "Name contains illegal characters"). Solución: el campo nunca empieza vacío (precarga con el texto propio o la descripción actual). Un texto precargado y sin tocar pasa la validación.
+- El motor limita el texto a `NGUI.RENAME_MAX_LENGTH` = **40** caracteres ("Name is too long"); Advanced Cheat Menu lo ocultaba al subirlo a 1000. El mod lo sube a 500 en `common/defines/ate_cd_defines.txt` (como Better Barbershop); el campo corta en 400.
+- En un `trigger` de opción, comparar una variable sin definir con `=` llena el `error.log` (el constructor del tooltip evalúa todas las líneas): usar `?=`.
+
 ### Criterios de aceptación
 
-- [ ] Prototipo: el texto escrito aparece en el tooltip y en la ventana de la cultura.
-- [ ] Prototipo: el texto sobrevive a **guardar y cargar**.
-- [ ] Prototipo: el texto sobrevive a la **muerte del autor** (matar por consola, guardar, cargar).
-- [ ] Prototipo: `[ ]`, `$` y `#` escritos por el jugador no se interpretan como código.
+- [x] Prototipo: el texto escrito aparece en el tooltip y en la ventana de la cultura.
+- [x] Prototipo: el texto sobrevive a **guardar y cargar**.
+- [x] Prototipo: el texto sobrevive a la **muerte del autor** (matar por consola, guardar, cargar). El heredero puede editarlo (el evento copia el texto del autor muerto con `copy_localized_text`).
+- [x] Prototipo: `[ ]`, `$` y `#` escritos por el jugador no se interpretan como código (el motor los rechaza y no deja guardar).
 - [ ] Crear una cultura como jugador dispara el evento una sola vez; la IA no lo recibe.
-- [ ] "Quedarse con la genérica" no cambia nada.
-- [ ] Si el autor es purgado o el texto se pierde, la cultura vuelve a su genérica sin mostrar texto vacío ni clave cruda.
+- [x] "Quedarse con la genérica" no cambia nada (prototipo: opción "Keep the current description", oculta cuando el jugador ya es el autor).
+- [ ] Si el autor es purgado o el texto se pierde, la cultura vuelve a su genérica sin mostrar texto vacío ni clave cruda. (Mitigado en la GUI: modo 2 exige `exists = var:ate_cd_text_holder` y la rama de texto vacío muestra la clave. La purga no se pudo forzar en las pruebas.)
 - [ ] Una descripción por personaje (opción (a) del riesgo 4, la clave del widget es fija): el evento no se ofrece si el personaje ya describió otra cultura que sigue existiendo; su heredero sí puede describir la suya.
-- [ ] Campo de varias líneas con tope de caracteres: copia propia del widget con `multiline = yes` y `maxcharacters` (como el campo de descripción de religión), más `max_width` en la GUI.
-- [ ] `error.log` sin entradas del mod.
+- [x] Campo de varias líneas con tope de caracteres: copia propia del widget con `multiline = yes`, `maxcharacters = 400` y tamaño fijo (458×130), más `max_width` en la GUI. Un texto corto queda alineado a la izquierda.
+- [x] Límite del motor subido: `RENAME_MAX_LENGTH = 500` (probado sin Advanced Cheat Menu).
+- [x] `error.log` sin entradas del mod (prototipo, tras el arreglo con `?=`). Repetir con la fase completa.
 
 ---
 

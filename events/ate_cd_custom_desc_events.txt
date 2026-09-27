@@ -1,0 +1,91 @@
+﻿namespace = ate_cd
+
+# PROTOTYPE (phase 8, step 0) - console only: event ate_cd.9000
+# The player writes the description of their own culture. The engine stores
+# free text only on characters, so the text lives on the author and the
+# culture points at them through var:ate_cd_text_holder.
+# See scripts/fase10_informe_texto_editable.md.
+#
+# Engine rule (tested): the typed text is written to root with ANY option.
+# "Keep" is therefore only a real cancel when root is not the culture's current
+# author, so it is hidden when they are (editing your own text = Save only).
+ate_cd.9000 = {
+	type = character_event
+	title = ate_cd.9000.t
+	desc = ate_cd.9000.desc
+	theme = default
+	left_portrait = root
+	orphan = yes
+
+	immediate = {
+		culture = { save_scope_as = ate_cd_culture }
+		# Someone else wrote it (e.g. a dead predecessor): copy their text onto
+		# root so the field comes prefilled with it
+		if = {
+			limit = {
+				scope:ate_cd_culture = {
+					exists = var:ate_cd_text_holder
+					NOT = { var:ate_cd_text_holder ?= root }
+				}
+			}
+			scope:ate_cd_culture.var:ate_cd_text_holder = { save_scope_as = ate_cd_old_author }
+			copy_localized_text = {
+				key = ate_cd_custom_desc
+				target = scope:ate_cd_old_author
+			}
+		}
+	}
+
+	widget = {
+		gui = "ate_cd_enter_description"
+		container = "custom_widgets_container"
+		controller = {
+			type = text
+			data = {
+				key = ate_cd_custom_desc
+				default = ""
+			}
+		}
+		setup_scope = {
+			root = { save_scope_as = text_target }
+		}
+	}
+
+	# Save: keep the text after the author's death and point the culture at them
+	option = {
+		name = ate_cd.9000.a
+		store_localized_text_in_death = ate_cd_custom_desc
+		# The previous author no longer needs to keep it (save size)
+		if = {
+			limit = { exists = scope:ate_cd_old_author }
+			scope:ate_cd_old_author = { remove_localized_text = ate_cd_custom_desc }
+		}
+		scope:ate_cd_culture = {
+			set_variable = {
+				name = ate_cd_text_holder
+				value = root
+			}
+		}
+	}
+
+	# Keep: the culture keeps pointing where it did. Hidden when root is already
+	# the author, because their own text would be overwritten anyway.
+	option = {
+		name = ate_cd.9000.b
+		# ?= : the tooltip builder evaluates every line, so a plain = on an
+		# unset var logs an error every frame while the event is open
+		trigger = {
+			NOT = {
+				scope:ate_cd_culture = { var:ate_cd_text_holder ?= root }
+			}
+		}
+	}
+
+	after = {
+		# A picked default entry is stored as a variable with the widget key
+		if = {
+			limit = { has_variable = ate_cd_custom_desc }
+			remove_variable = ate_cd_custom_desc
+		}
+	}
+}

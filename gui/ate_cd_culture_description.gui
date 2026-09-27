@@ -1,6 +1,6 @@
 ﻿# AteCultureDescription - the culture description block.
-# Shows the culture's description (written text, family generic or fallback)
-# and the invitation to improve it. Needs a Culture datacontext.
+# Shows the culture's description (player's own text, written text, family
+# generic or fallback) and the invitation to improve it. Needs a Culture datacontext.
 # Used by the culture tooltip (gui/shared/cooltip.gui) and the culture window
 # (gui/window_culture.gui). Change what is shown HERE, once, for both.
 #
@@ -13,9 +13,46 @@ types AteCdCultureDescription
 	type ate_cd_culture_description = vbox {
 		layoutpolicy_horizontal = growing
 
-		# Culture has a description key
+		# Mode 2 - a player wrote this culture's description (phase 8 prototype).
+		# Nested so the author's text is only evaluated when the author exists.
+		vbox = {
+			visible = "[EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_desc_mode_value' ), '(CFixedPoint)2' )]"
+			layoutpolicy_horizontal = growing
+
+			# The player's own text, shown as typed (raw_text). In an hbox with
+			# expand so a short text sits on the left instead of centered.
+			hbox = {
+				visible = "[Not( StringIsEmpty( Culture.MakeScope.Var( 'ate_cd_text_holder' ).Char.GetLocalizedText( 'ate_cd_custom_desc' ) ) )]"
+				layoutpolicy_horizontal = growing
+
+				text_multi = {
+					margin = { 0 5 }
+					raw_text = "[Culture.MakeScope.Var( 'ate_cd_text_holder' ).Char.GetLocalizedText( 'ate_cd_custom_desc' )]"
+					autoresize = yes
+					block "ate_cd_desc_props" {
+						max_width = 400
+					}
+				}
+
+				expand = {}
+			}
+
+			# Text missing (the engine refuses to save an empty one, so this is
+			# only a safety net): show the culture's own description instead
+			text_multi = {
+				visible = "[StringIsEmpty( Culture.MakeScope.Var( 'ate_cd_text_holder' ).Char.GetLocalizedText( 'ate_cd_custom_desc' ) )]"
+				margin = { 0 5 }
+				text = "[Localize( Concatenate( Culture.MakeScope.Var( 'ate_cd_culture_key' ).GetFlagName, '_desc' ) )]"
+				autoresize = yes
+				block "ate_cd_desc_props" {
+					max_width = 400
+				}
+			}
+		}
+
+		# Mode 1 - the culture has a description key
 		text_multi = {
-			visible = "[EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_has_culture_key_value' ), '(CFixedPoint)1' )]"
+			visible = "[EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_desc_mode_value' ), '(CFixedPoint)1' )]"
 			margin = { 0 5 }
 			text = "[Localize( Concatenate( Culture.MakeScope.Var( 'ate_cd_culture_key' ).GetFlagName, '_desc' ) )]"
 			autoresize = yes
@@ -24,11 +61,11 @@ types AteCdCultureDescription
 			}
 		}
 
-		# Fallback: no key yet (culture from another mod, or before the first pulse).
+		# Mode 0 - fallback: no key yet (culture from another mod, or before the first pulse).
 		# Two widgets with complementary visibility, not SelectLocalization, which
 		# drops the Culture datacontext this text needs.
 		text_multi = {
-			visible = "[Not( EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_has_culture_key_value' ), '(CFixedPoint)1' ) )]"
+			visible = "[EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_desc_mode_value' ), '(CFixedPoint)0' )]"
 			margin = { 0 5 }
 			text = "ate_cd_fallback_desc"
 			autoresize = yes
@@ -37,8 +74,10 @@ types AteCdCultureDescription
 			}
 		}
 
-		# Invitation to improve the text (community spreadsheet)
+		# Invitation to improve the text (community spreadsheet). Hidden under a
+		# player's own text, which is not in the spreadsheet.
 		text_multi = {
+			visible = "[Not( EqualTo_CFixedPoint( Culture.MakeScope.ScriptValue( 'ate_cd_desc_mode_value' ), '(CFixedPoint)2' ) )]"
 			margin_bottom = 5
 			text = "ate_cd_feedback_hint"
 			default_format = "#weak"

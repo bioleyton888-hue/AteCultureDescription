@@ -1,0 +1,7 @@
+﻿l_english:
+ # Phase 8 prototype - the player writes their culture's description (event ate_cd.9000)
+ ate_cd.9000.t:0 "The Tale of Our People"
+ ate_cd.9000.desc:0 "Every people tells its own story. Write down how the [ate_cd_culture.GetCollectiveNounNoTooltip] see themselves: where they came from, what they value and what sets them apart. The field starts with their current description; rewrite it or keep it. It is shown in the culture tooltip and in the culture window."
+ ate_cd.9000.a:0 "Save this description"
+ ate_cd.9000.b:0 "Keep the current description"
+ ate_cd_custom_desc_prompt:0 "Description: 2 to 4 sentences, up to 400 characters. Brackets, dollar signs and hashes are not allowed."
