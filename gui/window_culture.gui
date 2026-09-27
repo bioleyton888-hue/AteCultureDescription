@@ -780,6 +780,29 @@ window = {
 				expand = {}
 			}
 
+			#ATE_CD ADDITION - "Edit Description" button (culture head only, like
+			# "Reform Culture"). Own row: a third 240-wide button does not fit above.
+			hbox = {
+				visible = "[And( Not( CultureWindow.IsInReformationMode ), And( ObjectsEqual( Culture.GetCultureHead.Self, GetPlayer ), GetPlayer.IsValid ) )]"
+				layoutpolicy_horizontal = expanding
+				margin = { 10 0 }
+				margin_bottom = 8
+
+				expand = {}
+
+				button_standard = {
+					name = "ate_cd_edit_description"
+					minimumsize = { 240 0 }
+					onclick = "[GetScriptedGui( 'ate_cd_edit_description_sgui' ).Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+					text = "ate_cd_edit_description_label"
+					tooltip = "ate_cd_edit_description_tt"
+					using = tooltip_nw
+				}
+
+				expand = {}
+			}
+			#ATE_CD ADDITION END
+
 			hbox = {
 				visible = "[CultureWindow.IsInReformationMode]"
 				layoutpolicy_horizontal = expanding

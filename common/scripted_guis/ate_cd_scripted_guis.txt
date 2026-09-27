@@ -1,0 +1,19 @@
+﻿# AteCultureDescription - scripted GUIs
+
+# "Edit Description" button in the culture window (gui/window_culture.gui,
+# block #ATE_CD ADDITION). Root = the player. The button is only visible to
+# the culture head (like vanilla "Reform Culture"); is_shown repeats it.
+# No limit on edits: if the head still authors another culture's text, the
+# event hands that text over first (see ate_cd.0001).
+ate_cd_edit_description_sgui = {
+	scope = character
+
+	is_shown = {
+		culture.culture_head ?= root
+	}
+
+	effect = {
+		culture = { save_scope_as = ate_cd_culture }
+		trigger_event = ate_cd.0001
+	}
+}

@@ -28,7 +28,8 @@ ate_cd_yearly_global_pulse = {
 	}
 }
 
-# New hybrid/divergent cultures (player or AI). Root = the new culture.
+# New hybrid/divergent cultures (player or AI). Root = the new culture,
+# scope:founder = its creator.
 # ATE hooks the same on_action (ccu_culture_created); both run.
 on_culture_created = {
 	on_actions = { ate_cd_on_culture_created }
@@ -37,5 +38,17 @@ on_culture_created = {
 ate_cd_on_culture_created = {
 	effect = {
 		ate_cd_assign_generic_key_effect = yes
+
+		# Phase 8: the player who created it may write its description.
+		# The culture travels as scope:ate_cd_culture (the founder may not have
+		# switched to it yet when this runs).
+		if = {
+			limit = {
+				exists = scope:founder
+				scope:founder = { is_ai = no }
+			}
+			save_scope_as = ate_cd_culture
+			scope:founder = { trigger_event = ate_cd.0001 }
+		}
 	}
 }

@@ -1,26 +1,54 @@
 ﻿namespace = ate_cd
 
-# PROTOTYPE (phase 8, step 0) - console only: event ate_cd.9000
-# The player writes the description of their own culture. The engine stores
-# free text only on characters, so the text lives on the author and the
-# culture points at them through var:ate_cd_text_holder.
-# See scripts/fase10_informe_texto_editable.md.
+# The player writes the description of their culture (phase 8).
+# Fired by on_culture_created for the player who created a hybrid/divergent
+# culture, and by the "Edit Description" button of the culture window
+# (culture head only, unlimited edits). Both pass the culture as
+# scope:ate_cd_culture.
 #
+# The engine stores free text only on characters, so the text lives on the
+# author and the culture points at them through var:ate_cd_text_holder.
+# A character has ONE text key, so if root still authors another culture's
+# text (e.g. the culture they diverged from), that text is handed over to
+# that culture's head before root's key is reused.
 # Engine rule (tested): the typed text is written to root with ANY option.
 # "Keep" is therefore only a real cancel when root is not the culture's current
 # author, so it is hidden when they are (editing your own text = Save only).
-ate_cd.9000 = {
+# See scripts/fase10_informe_texto_editable.md.
+ate_cd.0001 = {
 	type = character_event
-	title = ate_cd.9000.t
-	desc = ate_cd.9000.desc
+	title = ate_cd.0001.t
+	desc = ate_cd.0001.desc
 	theme = default
 	left_portrait = root
-	orphan = yes
+
+	trigger = {
+		is_ai = no
+	}
 
 	immediate = {
-		culture = { save_scope_as = ate_cd_culture }
-		# Someone else wrote it (e.g. a dead predecessor): copy their text onto
-		# root so the field comes prefilled with it
+		# Console or any caller that did not pass the culture
+		if = {
+			limit = { NOT = { exists = scope:ate_cd_culture } }
+			culture = { save_scope_as = ate_cd_culture }
+		}
+
+		# 1. Free root's text key: another culture still showing root's text
+		# keeps it through its current head, or goes back to its generic
+		random_culture_global = {
+			limit = {
+				var:ate_cd_text_holder ?= root
+				NOT = { this = scope:ate_cd_culture }
+			}
+			save_scope_as = ate_cd_previous_culture
+		}
+		if = {
+			limit = { exists = scope:ate_cd_previous_culture }
+			ate_cd_hand_over_description_effect = yes
+		}
+
+		# 2. Someone else wrote this culture's text (e.g. a dead predecessor):
+		# copy it onto root so the field comes prefilled with it
 		if = {
 			limit = {
 				scope:ate_cd_culture = {
@@ -53,7 +81,7 @@ ate_cd.9000 = {
 
 	# Save: keep the text after the author's death and point the culture at them
 	option = {
-		name = ate_cd.9000.a
+		name = ate_cd.0001.a
 		store_localized_text_in_death = ate_cd_custom_desc
 		# The previous author no longer needs to keep it (save size)
 		if = {
@@ -70,10 +98,10 @@ ate_cd.9000 = {
 
 	# Keep: the culture keeps pointing where it did. Hidden when root is already
 	# the author, because their own text would be overwritten anyway.
+	# ?= : the tooltip builder evaluates every line, so a plain = on an
+	# unset var logs an error every frame while the event is open
 	option = {
-		name = ate_cd.9000.b
-		# ?= : the tooltip builder evaluates every line, so a plain = on an
-		# unset var logs an error every frame while the event is open
+		name = ate_cd.0001.b
 		trigger = {
 			NOT = {
 				scope:ate_cd_culture = { var:ate_cd_text_holder ?= root }

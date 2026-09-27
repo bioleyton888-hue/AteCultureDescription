@@ -163,7 +163,7 @@ Una decisión visible solo para el jugador que es jefe de su cultura, que abre u
 
 ---
 
-## Fase 8: Escribir la descripción propia al crear una cultura — ⚠️ APROBADA · ✅ prototipo superado (2026-09-27)
+## Fase 8: Escribir la descripción propia al crear una cultura — 🛠 IMPLEMENTADA, pendiente de probar (prototipo ✅ 2026-09-27)
 
 > 2026-09-27: el usuario mantiene la fase (solo se omitió la 7), pero la definición original dependía de las plantillas. **Redefinición aprobada** por el usuario el 2026-09-27, a partir del informe de la fase 10 (`scripts/fase10_informe_texto_editable.md`): el jugador escribe texto libre en un evento. Definición original (elegir plantilla) descartada. Orden acordado: primero publicar lo ya terminado (commit, Workshop, hoja, Reddit) y después el prototipo.
 
@@ -172,6 +172,10 @@ Una decisión visible solo para el jugador que es jefe de su cultura, que abre u
 ### Qué construir
 
 Justo después de que el jugador crea una cultura híbrida o divergente, recibe un evento con un **campo de texto** (`event_window_widget_enter_text`) para escribir la descripción de su cultura, o la opción de quedarse con la genérica asignada. El texto se guarda en el personaje autor (`store_localized_text_in_death`) y la cultura guarda una variable que apunta a él (`ate_cd_text_holder`). El componente GUI compartido muestra ese texto con prioridad sobre la genérica, en el tooltip y en la ventana. La IA no recibe el evento.
+
+**Botón "Edit Description" en la ventana de cultura** (añadido 2026-09-27, decisión del usuario): el mismo evento se puede abrir en cualquier momento desde la ventana de cultura. Solo lo ve el **jefe de cultura** (como "Reform Culture"). Va en una fila propia bajo "Reform/Diverge Culture" (en esa fila no cabe un tercer botón de 240). Lo controla un scripted GUI (`ate_cd_edit_description_sgui`). **Ediciones ilimitadas** (decisión del usuario 2026-09-27): el jefe puede reescribir la descripción cuantas veces quiera.
+
+**Traspaso en vez de bloqueo** (reemplaza la opción (a) del riesgo 4, decisión del usuario 2026-09-27): un personaje tiene una sola clave de texto. Si al abrir el evento otra cultura todavía muestra su texto (p. ej. la cultura de la que divergió), ese texto se copia al jefe actual de esa cultura (`copy_localized_text` + `store_localized_text_in_death`) y la cultura pasa a apuntarle. Si no tiene jefe, o su jefe ya es autor de otra cultura, vuelve a su genérica.
 
 **Paso 0 — prototipo:** un evento de prueba lanzado por consola sobre la cultura del jugador, antes de construir la fase completa. Si falla guardar/cargar o la muerte del autor, se descarta el texto libre y se registra en `scripts/context.md`; si solo falla lo de los caracteres especiales, sigue siendo viable.
 
@@ -188,9 +192,12 @@ Justo después de que el jugador crea una cultura híbrida o divergente, recibe 
 - [x] Prototipo: el texto sobrevive a la **muerte del autor** (matar por consola, guardar, cargar). El heredero puede editarlo (el evento copia el texto del autor muerto con `copy_localized_text`).
 - [x] Prototipo: `[ ]`, `$` y `#` escritos por el jugador no se interpretan como código (el motor los rechaza y no deja guardar).
 - [ ] Crear una cultura como jugador dispara el evento una sola vez; la IA no lo recibe.
+- [ ] Al abrirse tras crear la cultura, el campo sale con la genérica de la cultura **nueva** (hybrid/divergent), no con la de la cultura anterior.
+- [ ] Botón "Edit Description": visible solo para el jefe de cultura, en su propia fila, sin desbordar la ventana; abre el evento.
+- [ ] El jefe puede editar la descripción cuantas veces quiera (el botón nunca se deshabilita).
 - [x] "Quedarse con la genérica" no cambia nada (prototipo: opción "Keep the current description", oculta cuando el jugador ya es el autor).
 - [ ] Si el autor es purgado o el texto se pierde, la cultura vuelve a su genérica sin mostrar texto vacío ni clave cruda. (Mitigado en la GUI: modo 2 exige `exists = var:ate_cd_text_holder` y la rama de texto vacío muestra la clave. La purga no se pudo forzar en las pruebas.)
-- [ ] Una descripción por personaje (opción (a) del riesgo 4, la clave del widget es fija): el evento no se ofrece si el personaje ya describió otra cultura que sigue existiendo; su heredero sí puede describir la suya.
+- [ ] ~~Una descripción por personaje (opción (a))~~ → reemplazada por el traspaso: al escribir para una cultura nueva, la cultura que mostraba su texto lo conserva a través de su jefe actual (o vuelve a su genérica si no se puede).
 - [x] Campo de varias líneas con tope de caracteres: copia propia del widget con `multiline = yes`, `maxcharacters = 400` y tamaño fijo (458×130), más `max_width` en la GUI. Un texto corto queda alineado a la izquierda.
 - [x] Límite del motor subido: `RENAME_MAX_LENGTH = 500` (probado sin Advanced Cheat Menu).
 - [x] `error.log` sin entradas del mod (prototipo, tras el arreglo con `?=`). Repetir con la fase completa.

@@ -20,6 +20,7 @@ Hover over any culture, anywhere in the game (a character, a county, the culture
 - **New cultures included.** Hybrid and divergent cultures created during the game, by you or by the AI, get a description that fits how they were born.
 - **Written descriptions win.** When a culture gets its own text, it replaces the generic one automatically, even in saved games.
 - **Safe for existing saves.** You can add the mod to a running campaign: every culture gets its description by the next January 1st.
+- **Write your own.** When you create a hybrid or divergent culture, you can write its description yourself: it replaces the generic one. As cultural head you can rewrite it at any time, as often as you like, with the **Edit Description** button of the culture window. Your text stays after your death, and your heir can edit it.
 - **Community-driven.** Every description ends with an invitation to write a better one (see below).
 
 ## Help write the descriptions
@@ -47,7 +48,8 @@ There are 422 cultures in After the End, and each deserves someone who actually 
   - `gui/shared/cooltip.gui` (the shared tooltip file);
   - `gui/window_culture.gui` (the culture window).
 
-  It is **incompatible with other mods that change either file**: whichever loads last wins. After the End itself touches neither. Both files are unmodified vanilla copies except for one block marked `#ATE_CD ADDITION`, which makes a compatibility patch easy.
+  It is **incompatible with other mods that change either file**: whichever loads last wins. After the End itself touches neither. Both files are unmodified vanilla copies except for the blocks marked `#ATE_CD ADDITION` (one in the tooltip, two in the culture window: the description and the Edit Description button), which makes a compatibility patch easy.
+- It raises the engine's limit for typed text (`NGUI.RENAME_MAX_LENGTH`, vanilla 40 characters) to 500, so a description fits. Every rename box in the game keeps its own character cap, so names do not get longer in practice. Advanced Cheat Menu sets 1000: either value works.
 - Game mechanics are untouched: no changes to cultures, traditions, hybridization or divergence.
 
 ## How it works
@@ -64,6 +66,7 @@ For anyone curious, or anyone writing a compatibility patch:
   New cultures get theirs through `on_culture_created`.
 - A culture with no family (for example, one from another mod) shows a **universal fallback** text.
 - What to show lives in **one shared interface component** (`ate_cd_culture_description`), used by both the tooltip and the culture window.
+- **Player-written descriptions:** CK3 can only store free text on characters, so the text is saved on its author (and kept after their death) and the culture points at them. The engine writes the text with any option of the event and refuses empty text or the characters `[ ] $ #`, so the field always starts filled in. A character can hold only one text, so when you write for a new culture (for example after diverging), the culture you described before keeps its text through its current head, or goes back to its generic description.
 
 | Family | Heritages |
 |---|---|
@@ -87,13 +90,17 @@ For anyone curious, or anyone writing a compatibility patch:
 
 ```
 common/
+  defines/            raises the engine's limit for typed text
   on_action/          game start, yearly pulse and culture creation hooks
   scripted_effects/   key assignment; *_generated.txt files are generated, do not edit by hand
-  script_values/      lets the tooltip check whether a culture has a description
+  scripted_guis/      the Edit Description button
+  script_values/      tells the interface what to show (own text, key or fallback)
+events/               the event where the player writes the description
 gui/
   ate_cd_culture_description.gui   the shared description component (tooltip + window)
+  event_window_widgets/            the multiline text box of that event
   shared/cooltip.gui               vanilla tooltip file + the block marked #ATE_CD ADDITION
-  window_culture.gui               vanilla culture window + the block marked #ATE_CD ADDITION
+  window_culture.gui               vanilla culture window + two blocks marked #ATE_CD ADDITION
 localization/english/    descriptions (per heritage), generics and the fallback
 prds/, plans/            design documents (in Spanish)
 docs/                    screenshots

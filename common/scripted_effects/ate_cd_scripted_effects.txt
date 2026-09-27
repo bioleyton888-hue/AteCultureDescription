@@ -61,3 +61,38 @@ ate_cd_refresh_all_keys_effect = {
 		ate_cd_assign_generic_key_effect = yes
 	}
 }
+
+# Phase 8. Root = a player about to reuse their single text key (event
+# ate_cd.0001). scope:ate_cd_previous_culture still shows root's text: hand it
+# to that culture's current head, if their own key is free (they author no
+# culture). Otherwise the culture goes back to its generic/community text.
+ate_cd_hand_over_description_effect = {
+	scope:ate_cd_previous_culture = {
+		if = {
+			limit = {
+				exists = culture_head
+				culture_head = {
+					NOT = { this = root }
+					NOT = {
+						any_culture_global = { var:ate_cd_text_holder ?= prev }
+					}
+				}
+			}
+			culture_head = {
+				copy_localized_text = {
+					key = ate_cd_custom_desc
+					target = root
+				}
+				store_localized_text_in_death = ate_cd_custom_desc
+				save_scope_as = ate_cd_new_author
+			}
+			set_variable = {
+				name = ate_cd_text_holder
+				value = scope:ate_cd_new_author
+			}
+		}
+		else = {
+			remove_variable = ate_cd_text_holder
+		}
+	}
+}
