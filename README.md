@@ -117,7 +117,7 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 ## Changelog
 
 **0.2.1**
-- New community descriptions: Michigander, Bayfolk, Jeffersonian, Montereyan, Socaleno and Valleyan.
+- New community descriptions: Michigander, Buckeye, Gothamite, Yiddish, and six Californian cultures: Bayfolk, Jeffersonian, Joaquino, Montereyan, Socaleno and Valleyan.
 
 **0.2.0**
 - Write your own culture's description: an event when you create a hybrid or divergent culture, and an **Edit Description** button in the culture window (culture head only, unlimited edits).
@@ -132,5 +132,5 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 - **After the End** team, for the world these cultures live in.
 - **Elder Kings 2** team, for the culture-description technique.
-- **Description writers:** u/Reasonable_Common_46 (Barriga Verde, Hunsrickisch), u/breathingrequirement (Ancient Portuguese), PepsiManIII (Michigander) and u/RedHuron (Bayfolk, Jeffersonian, Montereyan, Socaleno, Valleyan).
+- **Description writers:** u/Reasonable_Common_46 (Barriga Verde, Hunsrickisch), u/breathingrequirement (Ancient Portuguese), PepsiManIII (Michigander), NotATem (Buckeye), u/Pipsy_the_Penguin (Gothamite) and u/RedHuron (Bayfolk, Jeffersonian, Joaquino, Montereyan, Socaleno, Valleyan).
 - Every community member who writes a description: your name goes in the credits.

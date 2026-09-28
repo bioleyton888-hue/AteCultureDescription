@@ -113,4 +113,8 @@ ate_cd_mark_written_descriptions_effect = {
 	culture:jeffersonian = { set_variable = ate_cd_has_written_text }
 	culture:montereyan = { set_variable = ate_cd_has_written_text }
 	culture:valleyan = { set_variable = ate_cd_has_written_text }
+	culture:valiano = { set_variable = ate_cd_has_written_text }
+	culture:buckeye = { set_variable = ate_cd_has_written_text }
+	culture:gothamite = { set_variable = ate_cd_has_written_text }
+	culture:yiddish = { set_variable = ate_cd_has_written_text }
 }
