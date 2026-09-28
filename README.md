@@ -116,6 +116,9 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 ## Changelog
 
+**0.2.1**
+- New community descriptions: Michigander, Bayfolk, Jeffersonian, Montereyan, Socaleno and Valleyan.
+
 **0.2.0**
 - Write your own culture's description: an event when you create a hybrid or divergent culture, and an **Edit Description** button in the culture window (culture head only, unlimited edits).
 - The invitation to improve a description now appears only in the culture window, not in every tooltip.
@@ -129,5 +132,5 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 - **After the End** team, for the world these cultures live in.
 - **Elder Kings 2** team, for the culture-description technique.
-- **Description writers:** u/Reasonable_Common_46 (Barriga Verde, Hunsrickisch) and u/breathingrequirement (Ancient Portuguese).
+- **Description writers:** u/Reasonable_Common_46 (Barriga Verde, Hunsrickisch), u/breathingrequirement (Ancient Portuguese), PepsiManIII (Michigander) and u/RedHuron (Bayfolk, Jeffersonian, Montereyan, Socaleno, Valleyan).
 - Every community member who writes a description: your name goes in the credits.

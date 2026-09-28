@@ -107,4 +107,10 @@ ate_cd_mark_written_descriptions_effect = {
 	culture:barriga_verde = { set_variable = ate_cd_has_written_text }
 	culture:hunsrickisch = { set_variable = ate_cd_has_written_text }
 	culture:ancient_portuguese = { set_variable = ate_cd_has_written_text }
+	culture:michigander = { set_variable = ate_cd_has_written_text }
+	culture:angeleno = { set_variable = ate_cd_has_written_text }
+	culture:bayfolk = { set_variable = ate_cd_has_written_text }
+	culture:jeffersonian = { set_variable = ate_cd_has_written_text }
+	culture:montereyan = { set_variable = ate_cd_has_written_text }
+	culture:valleyan = { set_variable = ate_cd_has_written_text }
 }
