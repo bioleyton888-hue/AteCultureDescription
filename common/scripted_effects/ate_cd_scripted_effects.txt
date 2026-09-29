@@ -127,4 +127,7 @@ ate_cd_mark_written_descriptions_effect = {
 	culture:appalachian = { set_variable = ate_cd_has_written_text }
 	culture:yinzer = { set_variable = ate_cd_has_written_text }
 	culture:utahn = { set_variable = ate_cd_has_written_text }
+	culture:butternutter = { set_variable = ate_cd_has_written_text }
+	culture:riverlander = { set_variable = ate_cd_has_written_text }
+	culture:doukhobor = { set_variable = ate_cd_has_written_text }
 }

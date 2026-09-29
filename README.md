@@ -116,6 +116,10 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 ## Changelog
 
+**0.2.3**
+- New community descriptions: Butternutter, Riverlander and Doukhobor.
+- Appalachian and Yinzer updated by their author.
+
 **0.2.2**
 - New community descriptions: Sunshiner and Sofloano (Florida), Gullah, Appalachian, Yinzer, Minnesotan, Northlander, Utahn, Sranan and Selk'nam.
 
@@ -135,5 +139,5 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 - **After the End** team, for the world these cultures live in.
 - **Elder Kings 2** team, for the culture-description technique.
-- **Description writers:** u/Reasonable_Common_46 (Barriga Verde, Hunsrickisch), u/breathingrequirement (Ancient Portuguese), PepsiManIII (Michigander), NotATem (Buckeye), u/Pipsy_the_Penguin (Gothamite), u/RedHuron (Bayfolk, Jeffersonian, Joaquino, Montereyan, Socaleno, Valleyan), IamUpoi (Sranan, Selk'nam), u/meanderingSquid49 (Minnesotan, Northlander), u/07eudaimonean (Gullah, Appalachian, Yinzer) and Edward (Utahn).
+- **Description writers:** u/Reasonable_Common_46 (Barriga Verde, Hunsrickisch), u/breathingrequirement (Ancient Portuguese), PepsiManIII (Michigander), NotATem (Buckeye), u/Pipsy_the_Penguin (Gothamite), u/RedHuron (Bayfolk, Jeffersonian, Joaquino, Montereyan, Socaleno, Valleyan), IamUpoi (Sranan, Selk'nam), u/meanderingSquid49 (Minnesotan, Northlander), u/07eudaimonean (Gullah, Appalachian, Yinzer), Edward (Utahn), u/Constant-Cup-4902 (Butternutter, Riverlander) and kuev (Doukhobor).
 - Every community member who writes a description: your name goes in the credits.
