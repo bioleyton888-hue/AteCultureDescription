@@ -116,6 +116,9 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 ## Changelog
 
+**0.2.2**
+- New community descriptions: Sunshiner and Sofloano (Florida), Gullah, Appalachian, Yinzer, Minnesotan, Northlander, Utahn, Sranan and Selk'nam.
+
 **0.2.1**
 - New community descriptions: Michigander, Buckeye, Gothamite, Yiddish, and six Californian cultures: Bayfolk, Jeffersonian, Joaquino, Montereyan, Socaleno and Valleyan.
 
@@ -132,5 +135,5 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 - **After the End** team, for the world these cultures live in.
 - **Elder Kings 2** team, for the culture-description technique.
-- **Description writers:** u/Reasonable_Common_46 (Barriga Verde, Hunsrickisch), u/breathingrequirement (Ancient Portuguese), PepsiManIII (Michigander), NotATem (Buckeye), u/Pipsy_the_Penguin (Gothamite) and u/RedHuron (Bayfolk, Jeffersonian, Joaquino, Montereyan, Socaleno, Valleyan).
+- **Description writers:** u/Reasonable_Common_46 (Barriga Verde, Hunsrickisch), u/breathingrequirement (Ancient Portuguese), PepsiManIII (Michigander), NotATem (Buckeye), u/Pipsy_the_Penguin (Gothamite), u/RedHuron (Bayfolk, Jeffersonian, Joaquino, Montereyan, Socaleno, Valleyan), IamUpoi (Sranan, Selk'nam), u/meanderingSquid49 (Minnesotan, Northlander), u/07eudaimonean (Gullah, Appalachian, Yinzer) and Edward (Utahn).
 - Every community member who writes a description: your name goes in the credits.

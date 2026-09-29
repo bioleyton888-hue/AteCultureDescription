@@ -117,4 +117,14 @@ ate_cd_mark_written_descriptions_effect = {
 	culture:buckeye = { set_variable = ate_cd_has_written_text }
 	culture:gothamite = { set_variable = ate_cd_has_written_text }
 	culture:yiddish = { set_variable = ate_cd_has_written_text }
+	culture:sunshiner = { set_variable = ate_cd_has_written_text }
+	culture:sofloano = { set_variable = ate_cd_has_written_text }
+	culture:sranan = { set_variable = ate_cd_has_written_text }
+	culture:selknam = { set_variable = ate_cd_has_written_text }
+	culture:minnesotan = { set_variable = ate_cd_has_written_text }
+	culture:northlander = { set_variable = ate_cd_has_written_text }
+	culture:gullah = { set_variable = ate_cd_has_written_text }
+	culture:appalachian = { set_variable = ate_cd_has_written_text }
+	culture:yinzer = { set_variable = ate_cd_has_written_text }
+	culture:utahn = { set_variable = ate_cd_has_written_text }
 }
