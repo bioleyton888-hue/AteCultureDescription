@@ -15,7 +15,7 @@ Hover over any culture, anywhere in the game (a character, a county, the culture
 ## Features
 
 - **A description in every culture tooltip.** It appears below the usual content and never stretches the tooltip.
-- **Also in the culture window**, right under the ethos banner of the Traditions and Pillars tab. Pillars and traditions stay where they were.
+- **Also in the culture window**, right under the ethos banner of the Traditions and Pillars tab, in a **Description** section you can fold away with one click. It stays folded for every culture, even after loading another save, until you close the game. Pillars and traditions stay where they were.
 - **No culture is ever left blank.** ATE has 422 cultures. Those without a written description get a generic one based on their region: the South, the Caribbean, the Andes, the Arctic and so on.
 - **New cultures included.** Hybrid and divergent cultures created during the game, by you or by the AI, get a description that fits how they were born.
 - **Written descriptions win.** When a culture gets its own text, it replaces the generic one automatically, even in saved games.
@@ -115,6 +115,9 @@ docs/                    screenshots
 All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab characters, as CK3 requires. `.gitattributes` disables line-ending conversion so the files stay byte-identical.
 
 ## Changelog
+
+**0.2.4**
+- The description in the culture window is now a foldable **Description** section. It starts open; fold it once and it stays folded for every culture until you close the game. The tooltip is unchanged.
 
 **0.2.3**
 - New community descriptions: Butternutter, Riverlander and Doukhobor.

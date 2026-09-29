@@ -204,15 +204,36 @@ window = {
 				}
 			}
 
-			#ATE_CD ADDITION - culture description (type in gui/ate_cd_culture_description.gui)
-			ate_cd_culture_description = {
+			#ATE_CD ADDITION - culture description (type in gui/ate_cd_culture_description.gui).
+			# Foldable like vanilla's epidemics window. Open by default: the GUI variable
+			# marks it FOLDED, and lives for the game session only (not in the save).
+			vbox = {
 				layoutpolicy_horizontal = expanding
-				margin = { 12 2 }
-				blockoverride "ate_cd_desc_props" {
-					max_width = 565
+
+				button_expandable_toggle_field = {
+					layoutpolicy_horizontal = expanding
+
+					blockoverride "onclick" {
+						onclick = "[GetVariableSystem.Toggle( 'ate_cd_desc_collapsed' )]"
+					}
+					blockoverride "button_expand" {
+						frame = "[BoolTo1And2( Not( GetVariableSystem.Exists( 'ate_cd_desc_collapsed' ) ) )]"
+					}
+					blockoverride "text" {
+						text = "ate_cd_description_header"
+					}
 				}
-				blockoverride "ate_cd_hint_props" {
-					max_width = 565
+
+				ate_cd_culture_description = {
+					visible = "[Not( GetVariableSystem.Exists( 'ate_cd_desc_collapsed' ) )]"
+					layoutpolicy_horizontal = expanding
+					margin = { 12 2 }
+					blockoverride "ate_cd_desc_props" {
+						max_width = 565
+					}
+					blockoverride "ate_cd_hint_props" {
+						max_width = 565
+					}
 				}
 			}
 			#ATE_CD ADDITION END
