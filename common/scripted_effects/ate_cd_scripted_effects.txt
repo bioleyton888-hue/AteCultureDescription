@@ -130,4 +130,6 @@ ate_cd_mark_written_descriptions_effect = {
 	culture:butternutter = { set_variable = ate_cd_has_written_text }
 	culture:riverlander = { set_variable = ate_cd_has_written_text }
 	culture:doukhobor = { set_variable = ate_cd_has_written_text }
+	culture:caipira = { set_variable = ate_cd_has_written_text }
+	culture:cascadian = { set_variable = ate_cd_has_written_text }
 }

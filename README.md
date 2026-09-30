@@ -116,6 +116,9 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 ## Changelog
 
+**0.2.5**
+- New community descriptions: Caipira and Cascadian.
+
 **0.2.4**
 - The description in the culture window is now a foldable **Description** section. It starts open; fold it once and it stays folded for every culture until you close the game. The tooltip is unchanged.
 
@@ -142,5 +145,5 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 - **After the End** team, for the world these cultures live in.
 - **Elder Kings 2** team, for the culture-description technique.
-- **Description writers:** u/Reasonable_Common_46 (Barriga Verde, Hunsrickisch), u/breathingrequirement (Ancient Portuguese), PepsiManIII (Michigander), NotATem (Buckeye), u/Pipsy_the_Penguin (Gothamite), u/RedHuron (Bayfolk, Jeffersonian, Joaquino, Montereyan, Socaleno, Valleyan), IamUpoi (Sranan, Selk'nam), u/meanderingSquid49 (Minnesotan, Northlander), u/07eudaimonean (Gullah, Appalachian, Yinzer), Edward (Utahn), u/Constant-Cup-4902 (Butternutter, Riverlander) and kuev (Doukhobor).
+- **Description writers:** u/Reasonable_Common_46 (Barriga Verde, Hunsrickisch), u/breathingrequirement (Ancient Portuguese), PepsiManIII (Michigander), NotATem (Buckeye), u/Pipsy_the_Penguin (Gothamite), u/RedHuron (Bayfolk, Jeffersonian, Joaquino, Montereyan, Socaleno, Valleyan), IamUpoi (Sranan, Selk'nam), u/meanderingSquid49 (Minnesotan, Northlander), u/07eudaimonean (Gullah, Appalachian, Yinzer), Edward (Utahn), u/Constant-Cup-4902 (Butternutter, Riverlander), kuev (Doukhobor), u/Ok-Pair-4757 (Caipira) and u/malicious_booby (Cascadian).
 - Every community member who writes a description: your name goes in the credits.
