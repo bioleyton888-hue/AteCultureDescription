@@ -116,6 +116,9 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 ## Changelog
 
+**0.2.6**
+- 91 new descriptions adapted from the [After the End Fanfork Wiki](https://after-the-end-fanfork.fandom.com/wiki/Cultures) (CC-BY-SA 3.0), edited so they don't describe a 2666 political map that changes as you play. Dixie gets a real description instead of the regional one. 119 of 422 cultures now have their own text; the wiki ones still invite you to write a better one.
+
 **0.2.5**
 - New community descriptions: Caipira and Cascadian.
 
