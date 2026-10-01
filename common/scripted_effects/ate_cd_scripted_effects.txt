@@ -132,4 +132,12 @@ ate_cd_mark_written_descriptions_effect = {
 	culture:doukhobor = { set_variable = ate_cd_has_written_text }
 	culture:caipira = { set_variable = ate_cd_has_written_text }
 	culture:cascadian = { set_variable = ate_cd_has_written_text }
+	culture:paulista = { set_variable = ate_cd_has_written_text }
+	culture:paulistano = { set_variable = ate_cd_has_written_text }
+	culture:caicara = { set_variable = ate_cd_has_written_text }
+	culture:capixaba = { set_variable = ate_cd_has_written_text }
+	culture:carioca = { set_variable = ate_cd_has_written_text }
+	culture:burajirujin = { set_variable = ate_cd_has_written_text }
+	culture:talian = { set_variable = ate_cd_has_written_text }
+	culture:menomex = { set_variable = ate_cd_has_written_text }
 }
