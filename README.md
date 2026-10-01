@@ -145,5 +145,6 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 - **After the End** team, for the world these cultures live in.
 - **Elder Kings 2** team, for the culture-description technique.
+- **[After the End Fanfork Wiki](https://after-the-end-fanfork.fandom.com/wiki/Cultures)** contributors: 91 descriptions are adapted from the wiki's culture pages, under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Those texts keep that license; each one links its source revision in the localization files.
 - **Description writers:** u/Reasonable_Common_46 (Barriga Verde, Hunsrickisch), u/breathingrequirement (Ancient Portuguese), PepsiManIII (Michigander), NotATem (Buckeye), u/Pipsy_the_Penguin (Gothamite), u/RedHuron (Bayfolk, Jeffersonian, Joaquino, Montereyan, Socaleno, Valleyan), IamUpoi (Sranan, Selk'nam), u/meanderingSquid49 (Minnesotan, Northlander), u/07eudaimonean (Gullah, Appalachian, Yinzer), Edward (Utahn), u/Constant-Cup-4902 (Butternutter, Riverlander), kuev (Doukhobor), u/Ok-Pair-4757 (Caipira) and u/malicious_booby (Cascadian).
 - Every community member who writes a description: your name goes in the credits.

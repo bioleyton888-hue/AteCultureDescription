@@ -1,4 +1,7 @@
 ﻿l_english:
- # Placeholder = southern base generic until the community writes a real one.
- # Never delete this key: saved games keep it registered (see scripts/context.md).
- ate_cd_dixie_desc:0 "The [Culture.GetCollectiveNounNoTooltip] are children of the American South, a land of swamps, bayous, red hills and hurricanes. The old nation fell around them, but the storms, the stubbornness and the cooking all survived. Proud, hospitable and quick to take offense, they will feed any stranger and fight any fool."
+ # Adapted from the After the End Fanfork Wiki (CC-BY-SA 3.0): https://after-the-end-fanfork.fandom.com/wiki/Dixie?oldid=2846
+ ate_cd_dixie_desc:0 "While many consider the Dixie to be simply the \"less sophisticated\" cousins of the Southrons, the truth is more complex than that, as the Dixie have a culture all their own. Though the Southrons have long held the reins of power, the Dixie make up the majority of the South's people, and their culture spreads from southern Carolina to the Ozarks and most places in between."
+ # Adapted from the After the End Fanfork Wiki (CC-BY-SA 3.0): https://after-the-end-fanfork.fandom.com/wiki/Gulfard?oldid=2861
+ ate_cd_gulfard_desc:0 "The people of Florida. Spanish and French influences have given them an identity distinct from their northerly cousins, but frequent Brethren raids and foreign ambitions have often kept them down. From a religious point of view, they are divided: most adhere to Americanism or Evangelicalism, with some Rastafari and Brethren among them."
+ # Adapted from the After the End Fanfork Wiki (CC-BY-SA 3.0): https://after-the-end-fanfork.fandom.com/wiki/Tuskegean?oldid=3304
+ ate_cd_tuskegean_desc:0 "The Tuskegeans are descended from the more heavily African-American communities of the South-East. Taking their name from the city of Tuskegee, Alabama, they have few powerful realms among them."
