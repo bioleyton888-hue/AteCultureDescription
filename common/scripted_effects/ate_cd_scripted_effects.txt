@@ -140,4 +140,7 @@ ate_cd_mark_written_descriptions_effect = {
 	culture:burajirujin = { set_variable = ate_cd_has_written_text }
 	culture:talian = { set_variable = ate_cd_has_written_text }
 	culture:menomex = { set_variable = ate_cd_has_written_text }
+	culture:candango = { set_variable = ate_cd_has_written_text }
+	culture:goiano = { set_variable = ate_cd_has_written_text }
+	culture:maracaju = { set_variable = ate_cd_has_written_text }
 }
