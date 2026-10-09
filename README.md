@@ -116,6 +116,9 @@ All `.txt`, `.yml` and `.gui` files are UTF-8 **with BOM** and use real tab char
 
 ## Changelog
 
+**0.2.9**
+- New community description by u/Ok-Pair-4757: Terena. 131 of 422 cultures now have their own text.
+
 **0.2.8**
 - New community descriptions by u/Ok-Pair-4757: Candango, Goiano and Maracaju. 130 of 422 cultures now have their own text.
 
